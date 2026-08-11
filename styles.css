@@ -1248,6 +1248,26 @@ textarea.fi {
   color: rgba(255, 255, 255, .72);
 }
 
+.map-embed {
+  line-height: 0;
+}
+
+.map-embed iframe {
+  display: block;
+}
+
+.map-info {
+  padding: 20px 24px;
+  text-align: center;
+  background: #14171a;
+  color: var(--white);
+}
+
+.map-info p {
+  margin: 12px 0 0;
+  color: rgba(255, 255, 255, .72);
+}
+
 .map-tag {
   display: inline-flex;
   padding: 10px 14px;

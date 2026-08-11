@@ -144,7 +144,7 @@
     const details = document.getElementById("fm")?.value.trim() || "";
 
     return [
-      "Hola, quiero solicitar una cotización con Maderas Javier Leyva.",
+      "Hola, quiero solicitar una cotización con Maxiem Maderas SA de CV.",
       `Nombre: ${name}`,
       `Teléfono: ${tel}`,
       `Producto: ${product}`,
