@@ -13,6 +13,8 @@
   --line: rgba(43, 43, 43, 0.12);
   --shadow: 0 24px 80px rgba(17, 53, 77, 0.18);
   --ease: cubic-bezier(.2, .8, .2, 1);
+  --gold: #d4af6a;
+  --gold-shadow: 0 18px 44px rgba(201, 151, 90, 0.32);
 }
 
 * {
@@ -85,8 +87,18 @@ textarea {
   color: var(--blue);
   font-size: 12px;
   font-weight: 800;
-  letter-spacing: 0;
+  letter-spacing: .08em;
   text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 1px;
+  margin-right: 8px;
+  background: var(--gold);
+  vertical-align: middle;
 }
 
 .eyebrow--white {
@@ -174,7 +186,7 @@ textarea {
   flex: 0 0 auto;
   width: 58px;
   height: 58px;
-  border: 1px solid rgba(255, 255, 255, 0.34);
+  border: 1px solid rgba(212, 175, 106, 0.45);
   border-radius: 8px;
   background:
     linear-gradient(145deg, rgba(31, 111, 163, 0.96), rgba(17, 53, 77, 0.96)),
@@ -183,7 +195,7 @@ textarea {
   font-family: "Archivo", sans-serif;
   font-weight: 800;
   font-size: 17px;
-  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.24), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
 .brand-mark--loader {
@@ -338,9 +350,13 @@ textarea {
 }
 
 .nav-links .nav-cta {
-  background: var(--blue);
+  background: linear-gradient(120deg, var(--blue), var(--blue-dark));
   color: var(--white);
-  box-shadow: 0 16px 30px rgba(31, 111, 163, 0.28);
+  box-shadow: 0 16px 30px rgba(31, 111, 163, 0.28), inset 0 0 0 1px rgba(212, 175, 106, 0.35);
+}
+
+.nav-links .nav-cta:hover {
+  box-shadow: 0 16px 30px rgba(31, 111, 163, 0.28), var(--gold-shadow);
 }
 
 #nav.scrolled .nav-links .nav-cta {
@@ -572,16 +588,33 @@ textarea {
 
 .btn-primary,
 .btn-submit {
+  position: relative;
+  overflow: hidden;
   background: linear-gradient(135deg, var(--blue), var(--sky));
   color: var(--white);
-  box-shadow: 0 18px 42px rgba(31, 111, 163, 0.34);
+  box-shadow: 0 18px 42px rgba(31, 111, 163, 0.34), inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+.btn-primary::after,
+.btn-submit::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.45) 46%, rgba(255, 255, 255, 0.45) 54%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform .6s var(--ease);
+}
+
+.btn-primary:hover::after,
+.btn-submit:hover::after {
+  transform: translateX(120%);
 }
 
 .btn-primary:hover,
 .btn-submit:hover,
 .prod-pill:hover {
   transform: translateY(-2px);
-  box-shadow: 0 24px 54px rgba(31, 111, 163, 0.38);
+  box-shadow: 0 24px 54px rgba(31, 111, 163, 0.38), var(--gold-shadow);
 }
 
 .btn-secondary,
@@ -843,11 +876,30 @@ textarea {
   transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
 }
 
+.svc-card::before,
+.prod-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity .3s var(--ease);
+  z-index: 3;
+}
+
 .svc-card:hover,
 .prod-card:hover {
   transform: translateY(-6px);
   border-color: rgba(31, 111, 163, 0.28);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow), var(--gold-shadow);
+}
+
+.svc-card:hover::before,
+.prod-card:hover::before {
+  opacity: 1;
 }
 
 .svc-card {
